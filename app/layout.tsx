@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/navbar'
+import Footer from '@/components/layout/footer'
 
 // ─── Metadata SEO ────────────────────────────────────────────────────────────
 // Next.js usa este objeto para generar automáticamente las etiquetas
