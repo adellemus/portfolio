@@ -1,0 +1,19 @@
+# Dependencias — se regeneran con npm install
+node_modules/
+
+# Output del build de Next.js
+.next/
+out/
+
+# Variables de entorno — NUNCA subir esto, puede contener contraseñas o API keys
+.env
+.env.local
+.env.production
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

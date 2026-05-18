@@ -1,0 +1,45 @@
+---
+title: "Migrando de WordPress a Next.js: lo que aprendí"
+date: "2025-05-01"
+excerpt: "Por qué decidí abandonar el CMS más popular del mundo, cómo fue el proceso y qué gané en el camino."
+tags: ["next.js", "wordpress", "jamstack"]
+published: true
+---
+
+Llevaba años trabajando con WordPress — tanto para proyectos propios como para clientes. Es una herramienta que funciona, tiene un ecosistema inmenso, y la barrera de entrada es casi nula. Pero en algún punto empezás a pelear con él más de lo que lo usás.
+
+## El problema real
+
+No es que WordPress sea malo. El problema es que para un desarrollador que sabe React y puede construir exactamente lo que necesita, WordPress impone una capa de complejidad que no aporta valor:
+
+- Actualizaciones constantes de plugins que se rompen entre sí
+- Temas con cientos de opciones que igual terminás sobreescribiendo con CSS
+- Una base de datos MySQL para contenido que no cambia seguido
+- PHP mezclado con HTML de maneras que hacen doler los ojos
+
+## La alternativa: JAMstack
+
+JAMstack (JavaScript, APIs, Markup) es un enfoque donde el sitio se genera completamente en build time como HTML estático. No hay servidor corriendo, no hay base de datos que mantener — solo archivos.
+
+Para un portafolio personal, esto es perfecto:
+
+```bash
+# El flujo completo de deploy
+git add .
+git commit -m "nuevo post"
+git push origin main
+# Vercel detecta el push y deploya en ~30 segundos
+```
+
+## Qué uso ahora
+
+- **Next.js** con `output: 'export'` para generar todo estático
+- **MDX** para los posts — escribís markdown y podés meter componentes React
+- **Tailwind CSS** para los estilos
+- **Vercel** para el hosting — gratis para este caso de uso
+
+## Lo que gané
+
+El sitio carga en menos de un segundo. No hay login de WordPress que hackear. Los posts viven en Git con historial de cambios completo. Y lo más importante: **es código que entiendo de punta a punta**.
+
+Para proyectos de clientes que necesitan un panel de administración, WordPress sigue siendo válido. Pero para un portafolio personal de un desarrollador, construirlo vos mismo es la mejor carta de presentación.
