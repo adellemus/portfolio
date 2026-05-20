@@ -1,58 +1,10 @@
 import type { Metadata } from 'next'
+import { PROJECTS } from '@/content/fijos/statics'
+import { StatusBadge } from '@/components/ui/proyectos/StatusBadge'
 
 export const metadata: Metadata = {
   title: 'Proyectos',
   description: 'Proyectos que he construido — desde aplicaciones web hasta herramientas internas.',
-}
-
-// ─── Datos de proyectos ───────────────────────────────────────────────────────
-// Están hardcodeados acá porque para un portafolio personal no vale la pena
-// una base de datos ni un CMS — simplemente editás este array cuando tenés
-// un proyecto nuevo. Simple, directo, sin dependencias extra.
-const PROJECTS = [
-  {
-    title: 'Portfolio Personal',
-    description:
-      'Este mismo sitio — construido con Next.js, MDX y Tailwind. Deployado en Vercel con generación estática completa. Cero WordPress.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind', 'MDX'],
-    href: 'https://github.com/tu-usuario/portfolio',
-    live: 'https://tu-dominio.dev',
-    status: 'producción',
-  },
-  {
-    title: 'Nombre del Proyecto',
-    description:
-      'Descripción breve de qué hace el proyecto, qué problema resuelve y qué tecnología interesante usaste.',
-    tags: ['React', 'Python', 'FastAPI'],
-    href: 'https://github.com/tu-usuario/proyecto',
-    live: null, // null = no hay demo live
-    status: 'producción',
-  },
-  {
-    title: 'Otro Proyecto',
-    description:
-      'Otro proyecto destacado. Podés tener tantas cards como proyectos relevantes quieras mostrar.',
-    tags: ['PHP', 'MySQL', 'WordPress'],
-    href: null, // null = repositorio privado
-    live: 'https://cliente.com',
-    status: 'cliente',
-  },
-]
-
-// Badge de estado del proyecto — color según si está en producción, en desarrollo, etc.
-function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    'producción': 'bg-[#0f2a1f] text-[#28c941] border-[#1a4a2a]',
-    'cliente':    'bg-[#1a1a0f] text-[#f7c07e] border-[#3a3a1a]',
-    'wip':        'bg-[#1a0f0f] text-[#ff7e7e] border-[#3a1a1a]',
-  }
-  const style = styles[status] ?? styles['wip']
-
-  return (
-    <span className={`rounded border px-2 py-0.5 font-mono text-xs ${style}`}>
-      {status}
-    </span>
-  )
 }
 
 export default function ProyectosPage() {

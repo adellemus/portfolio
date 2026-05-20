@@ -8,7 +8,7 @@ export default function NotFound() {
       <p className="mb-4 font-mono text-6xl font-bold text-accent">404</p>
       <h1 className="mb-3 text-2xl font-bold text-white">Página no encontrada</h1>
       <p className="mb-8 max-w-sm text-sm text-text-muted">
-        La ruta que buscás no existe o fue movida. Volvé al inicio.
+        La ruta que buscas no existe o fue movida. Vuelve al inicio.
       </p>
       <div className="rounded-lg border border-border bg-bg-secondary p-5 font-mono text-sm text-text-dim">
         <span className="text-accent">$</span> cd ~/<span className="text-white">inicio</span>

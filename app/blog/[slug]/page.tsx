@@ -96,11 +96,12 @@ export default function BlogPostPage({ params }: Props) {
       </header>
 
       {/* Separador */}
-      <hr className="mb-12 border-border" />
+      <hr className="mb-10 border-border" />
 
       {/* Contenido MDX
           prose-content es la clase definida en globals.css que aplica
-          todos los estilos tipográficos al markdown renderizado. */}
+          todos los estilos tipográficos al markdown renderizado. 
+      */}
       <article className="prose-content">
         <MDXRemote
           source={post.content}
@@ -114,7 +115,7 @@ export default function BlogPostPage({ params }: Props) {
           href="/blog"
           className="inline-flex items-center gap-2 font-mono text-sm text-accent transition-opacity hover:opacity-70"
         >
-          ← volver al blog
+          ← volver a las publicaciones
         </Link>
       </footer>
 

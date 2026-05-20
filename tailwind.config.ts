@@ -29,7 +29,7 @@ const config: Config = {
           primary: '#ffffff',
           secondary: '#c9d1e0',
           muted: '#6b7a99',
-          dim: '#3a4a5e',
+          dim: '#5f7794',
         },
         border: {
           DEFAULT: '#1e2a3a',

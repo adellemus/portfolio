@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Portafolio personal de Adel Lemus. Desarrollo web con React, Vite, PHP, Python, Spring Boot, MySQL y MongoDB.,. Disponible para proyectos freelance.',
 }
 
-// Skills con su nivel (0-100). Cambiá los valores según tu honestidad contigo mismo 😄
+// Skills organizados por categoría para mostrar en el home.
 const SKILLS = [
   {
     category: 'Frontend',
@@ -52,12 +52,12 @@ export default async function HomePage() {
           {/* Tag superior */}
           <div className="mb-4 flex items-center gap-3">
             <span className="h-px w-6 bg-accent" />
-            <span className="font-mono text-xs uppercase tracking-widest text-accent">
+            <span className="font-mono text-sm uppercase tracking-widest text-accent">
               Desarrollador Full Stack
             </span>
           </div>
 
-          <h1 className="mb-5 text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+          <h1 className="mb-5 text-6xl font-extrabold leading-tight tracking-tight text-white md:text-7xl">
             Construyo cosas
             <br />
             para la{' '}
@@ -72,13 +72,13 @@ export default async function HomePage() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/proyectos"
-              className="rounded bg-accent px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-bg-primary transition-colors hover:bg-accent-dark"
+              className="rounded bg-accent px-5 py-2.5 font-mono text-sm font-bold uppercase tracking-widest text-bg-primary transition-colors hover:bg-accent-dark"
             >
               Ver proyectos
             </Link>
             <Link
               href="/contacto"
-              className="rounded border border-accent-border bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:bg-accent-muted"
+              className="rounded border border-accent-border bg-transparent px-5 py-2.5 font-mono text-sm uppercase tracking-widest text-accent transition-colors hover:bg-accent-muted"
             >
               Contacto ↗
             </Link>
@@ -92,11 +92,11 @@ export default async function HomePage() {
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
             <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
             <span className="h-3 w-3 rounded-full bg-[#28c941]" />
-            <span className="ml-auto font-mono text-xs text-text-dim">about.json</span>
+            <span className="ml-auto font-mono text-sm text-text-dim">about.json</span>
           </div>
 
           {/* Contenido del terminal */}
-          <div className="p-5 font-mono text-sm leading-loose">
+          <div className="p-5 font-mono text-base leading-loose">
             <div className="flex gap-2">
               <span className="text-accent">$</span>
               <span className="text-text-secondary">cat about.json</span>
@@ -122,6 +122,7 @@ export default async function HomePage() {
               <span className="text-[#f7c07e]">"PHP"</span>,{' '}
               <span className="text-[#f7c07e]">"Python"</span>,{' '}
               <span className="text-[#f7c07e]">"SQL"</span>,{' '}
+              <span className="text-[#f7c07e]">"MySQL"</span>,{' '}
               <span className="text-[#f7c07e]">"MongoDB"</span>],
             </div>
             <div className="pl-4 text-text-muted">
@@ -140,7 +141,7 @@ export default async function HomePage() {
 
       {/* ── SKILLS ───────────────────────────────────────────────────── */}
       <section className="border-t border-border py-16">
-        <p className="mb-8 font-mono text-xs uppercase tracking-widest text-text-dim">
+        <p className="mb-8 font-mono text-sm uppercase tracking-widest text-text-dim">
           // stack tecnológico
         </p>
 
@@ -150,7 +151,7 @@ export default async function HomePage() {
               key={group.category}
               className="rounded-md border border-border bg-bg-secondary p-5 transition-colors hover:border-accent"
             >
-              <p className="mb-4 font-mono text-xs uppercase tracking-widest text-accent">
+              <p className="mb-4 font-mono text-sm uppercase tracking-widest text-accent">
                 {group.category}
               </p>
 
@@ -158,7 +159,7 @@ export default async function HomePage() {
                 {group.items.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded border border-accent-border bg-accent-muted px-2 py-1 font-mono text-xs text-text-secondary"
+                    className="rounded border border-accent-border bg-accent-muted px-2 py-1 font-mono text-sm text-text-secondary"
                   >
                     {skill}
                   </span>
@@ -172,12 +173,12 @@ export default async function HomePage() {
       {/* ── ÚLTIMOS POSTS ────────────────────────────────────────────── */}
       <section className="border-t border-border py-16">
         <div className="mb-8 flex items-center justify-between">
-          <p className="font-mono text-xs uppercase tracking-widest text-text-dim">
+          <p className="font-mono text-sm uppercase tracking-widest text-text-dim">
             // últimas entradas del blog
           </p>
           <Link
             href="/blog"
-            className="font-mono text-xs text-accent transition-opacity hover:opacity-70"
+            className="font-mono text-sm text-accent transition-opacity hover:opacity-70"
           >
             ver todos →
           </Link>
@@ -198,7 +199,7 @@ export default async function HomePage() {
                 href={`/blog/${post.slug}`}
                 className="group rounded-lg border border-border bg-bg-secondary p-5 transition-all hover:-translate-y-1 hover:border-accent"
               >
-                <p className="mb-2 font-mono text-xs text-text-dim">
+                <p className="mb-2 font-mono text-sm text-text-dim">
                   {formatDate(post.date)} · {post.readingTime}
                 </p>
                 <h3 className="mb-2 text-base font-bold leading-snug text-white">
@@ -211,7 +212,7 @@ export default async function HomePage() {
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded border border-accent-border bg-accent-muted px-2 py-0.5 font-mono text-xs text-accent"
+                      className="rounded border border-accent-border bg-accent-muted px-2 py-0.5 font-mono text-sm text-accent"
                     >
                       {tag}
                     </span>

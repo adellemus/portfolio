@@ -5,39 +5,8 @@
 
 import type { Metadata } from 'next'
 import { useState } from 'react'
+import { CONTACT_LINKS, FORMSPREE_ENDPOINT, FormStatus } from '@/content/fijos/statics'
 
-// ─── Por qué Formspree y no un backend propio ─────────────────────────────────
-// Queremos cero servidor. Formspree recibe el POST del formulario,
-// te reenvía el mensaje a tu email, y tiene un plan gratis de 50 envíos/mes
-// — más que suficiente para un portafolio personal.
-//
-// SETUP (5 minutos):
-// 1. Creá cuenta en https://formspree.io
-// 2. Creá un nuevo form y copiá el endpoint (ej: https://formspree.io/f/xpwzabcd)
-// 3. Reemplazá FORMSPREE_ENDPOINT abajo con tu endpoint real
-
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/TU_ID_ACÁ'
-
-// Estado del formulario
-type FormStatus = 'idle' | 'loading' | 'success' | 'error'
-
-const CONTACT_LINKS = [
-  {
-    label: 'GitHub',
-    value: '@tu-usuario',
-    href: 'https://github.com/tu-usuario',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'Tu Nombre',
-    href: 'https://linkedin.com/in/tu-usuario',
-  },
-  {
-    label: 'Email',
-    value: 'tu@email.com',
-    href: 'mailto:tu@email.com',
-  },
-]
 
 export default function ContactoPage() {
   const [status, setStatus] = useState<FormStatus>('idle')
