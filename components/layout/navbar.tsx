@@ -33,9 +33,9 @@ export default function Navbar() {
         {/* Logo / nombre del sitio */}
         <Link
           href="/"
-          className="font-mono text-sm text-accent transition-opacity hover:opacity-80"
+          className="font-mono text-m text-accent transition-opacity hover:opacity-80"
         >
-          ~/<span className="text-white">Adel Lemus</span>
+          ~/<span className="text-white text-m">Adel Lemus</span>
         </Link>
 
         {/* Links de escritorio — ocultos en mobile */}

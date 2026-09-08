@@ -13,6 +13,29 @@ const config: Config = {
       // Paleta de colores del portafolio — centralizada acá para no
       // repetir hex codes por todo el código.
       colors: {
+        // Estados reutilizables: bg-estado-activo-bg, text-estado-activo, border-estado-activo-border.
+        estado: {
+          activo: {
+            DEFAULT: '#28c941',
+            bg: '#0f2a1f',
+            border: '#1a4a2a',
+          },
+          desarrollo: {
+            DEFAULT: '#f7c07e',
+            bg: '#1a1a0f',
+            border: '#3a3a1a',
+          },
+          wip: {
+            DEFAULT: '#ff7e7e',
+            bg: '#1a0f0f',
+            border: '#3a1a1a',
+          },
+          profesional: {
+            DEFAULT: '#7ec0f7',
+            bg: '#0f1a2a',
+            border: '#1a3a4a',
+          },
+        },
         bg: {
           primary: '#0a0e17',
           secondary: '#0d1520',

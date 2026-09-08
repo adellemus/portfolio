@@ -134,7 +134,7 @@ export default function ContactoPage() {
                   name="subject"
                   type="text"
                   required
-                  placeholder="¿De qué querés hablar?"
+                  placeholder="¿De qué quieres hablar?"
                   className="w-full rounded border border-border bg-bg-secondary px-4 py-3 text-sm text-text-secondary placeholder-text-dim outline-none transition-colors focus:border-accent"
                 />
               </div>
@@ -152,7 +152,7 @@ export default function ContactoPage() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="Contame tu proyecto o idea..."
+                  placeholder="Cuentame tu proyecto o idea..."
                   className="w-full resize-none rounded border border-border bg-bg-secondary px-4 py-3 text-sm text-text-secondary placeholder-text-dim outline-none transition-colors focus:border-accent"
                 />
               </div>
