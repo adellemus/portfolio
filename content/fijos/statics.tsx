@@ -4,33 +4,59 @@
 // un proyecto nuevo. Simple, directo, sin dependencias extra.
 export const PROJECTS = [
   {
-    title: 'Portfolio Personal',
+    title: 'Mobeela',
+    tagline: 'La gestión inmobiliaria, conectada.',
     description:
-      'Este mismo sitio — construido con Next.js, MDX y Tailwind. Deployado en Vercel con generación estática completa. Cero WordPress.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind', 'MDX'],
-    href: 'https://github.com/tu-usuario/portfolio',
-    live: 'https://tu-dominio.dev',
-    status: 'producción',
+      'Plataforma SaaS que reúne propiedades, clientes y publicaciones en un solo lugar. Permite sincronizar avisos con portales inmobiliarios, gestionar oportunidades comerciales y utilizar inteligencia artificial para apoyar la creación de contenido y la relación entre clientes y propiedades. Participé en su desarrollo como parte del equipo, trabajando sobre una arquitectura multiempresa, permisos por rol e interfaces adaptables a cada corredora.',
+    tags: ['SaaS', 'Next.js', 'NestJS', 'PostgreSQL', 'AI'],
+    href: null,
+    live: null,
+    status: 'MVP en operación',
   },
+
   {
-    title: 'Nombre del Proyecto',
+    title: 'Plataforma de Gestión Comercial',
+    tagline: 'De un prospecto a una oportunidad, sin perder el seguimiento.',
     description:
-      'Descripción breve de qué hace el proyecto, qué problema resuelve y qué tecnología interesante usaste.',
-    tags: ['React', 'Python', 'FastAPI'],
-    href: 'https://github.com/tu-usuario/proyecto',
-    live: null, // null = no hay demo live
-    status: 'producción',
+      'Producto SaaS en desarrollo para equipos que gestionan prospectos, llamadas, seguimientos y citas. Busca concentrar en un solo flujo la información comercial y las próximas acciones de cada contacto, manteniendo trazabilidad sobre el trabajo realizado y reduciendo oportunidades perdidas por falta de seguimiento.',
+    tags: ['SaaS', 'CRM', 'Workflows', 'RBAC'],
+    href: null,
+    live: null,
+    status: 'MVP en desarrollo',
   },
+
   {
-    title: 'Otro Proyecto',
+    title: 'Dynamic Workflow Forms',
+    tagline: 'Formularios capaces de adaptarse al proceso.',
     description:
-      'Otro proyecto destacado. Podés tener tantas cards como proyectos relevantes quieras mostrar.',
-    tags: ['PHP', 'MySQL', 'WordPress'],
-    href: null, // null = repositorio privado
-    live: 'https://cliente.com',
-    status: 'cliente',
+      'Trabajo realizado dentro de un proyecto empresarial sobre una plataforma de formularios utilizada en procesos con múltiples etapas, roles y reglas de negocio. Participé en la evolución de su arquitectura para permitir estructuras más flexibles, secciones dinámicas y diferentes experiencias según el estado del proceso y los permisos del usuario, manteniendo compatibilidad con funcionalidades existentes.',
+    tags: ['React', 'Dynamic Forms', 'Workflows', 'RBAC'],
+    href: null,
+    live: null,
+    status: 'proyecto profesional',
   },
-  
+
+  {
+    title: 'Gestión Documental Legal',
+    tagline: 'Documentación legal organizada alrededor de cada caso.',
+    description:
+      'Concepto de producto orientado a estudios jurídicos, fiscalías y equipos legales que necesitan centralizar grandes volúmenes de documentos. La propuesta combina organización por casos y clientes, búsqueda avanzada y herramientas de inteligencia artificial para localizar, resumir y reutilizar información documental de forma más eficiente.',
+    tags: ['Document Management', 'AI', 'Search', 'SaaS'],
+    href: null,
+    live: null,
+    status: 'concepto en desarrollo',
+  },
+
+  {
+    title: 'Money Change World',
+    tagline: 'Operaciones financieras desde una experiencia simple.',
+    description:
+      'Plataforma digital para gestionar operaciones de cambio, pagos, beneficiarios y movimientos desde una aplicación móvil. El proyecto incluye aplicación, backend e infraestructura propia, con flujos de autenticación, comprobantes e historial de operaciones diseñados para simplificar la experiencia del usuario.',
+    tags: ['React Native', 'Expo', 'Python', 'Flask', 'MySQL'],
+    href: null,
+    live: 'https://moneychangeworld.com',
+    status: 'desarrollo activo',
+  },
 ]
 
 // Formspree recibe el POST del formulario,
