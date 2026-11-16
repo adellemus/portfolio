@@ -51,6 +51,8 @@ jobs:
           test -n "$VPS_HOST" && test -n "$VPS_USER" && test -n "$VPS_PORT" && test -n "$VPS_DEPLOY_DIR"
           docker save "portfolio:${GITHUB_SHA}" | gzip | ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" 'gzip -d | docker load'
           scp -P "$VPS_PORT" docker-compose.prod.yml "$VPS_USER@$VPS_HOST:$VPS_DEPLOY_DIR/docker-compose.prod.yml"
+          ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" "mkdir -p '$VPS_DEPLOY_DIR/deploy'"
+          scp -P "$VPS_PORT" deploy/cleanup-images.sh "$VPS_USER@$VPS_HOST:$VPS_DEPLOY_DIR/deploy/cleanup-images.sh"
 
       - name: Activate portfolio only
         env:
@@ -60,3 +62,12 @@ jobs:
           VPS_DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR }}
         run: |
           ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" "cd '$VPS_DEPLOY_DIR' && PORTFOLIO_IMAGE=portfolio:${GITHUB_SHA} docker compose -f docker-compose.prod.yml up -d --no-build --no-deps --wait --wait-timeout 90 web && curl --fail --silent --show-error http://127.0.0.1:8090/ >/dev/null"
+
+      - name: Clean old portfolio images
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR }}
+        run: |
+          ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" "bash '$VPS_DEPLOY_DIR/deploy/cleanup-images.sh' portfolio 3"

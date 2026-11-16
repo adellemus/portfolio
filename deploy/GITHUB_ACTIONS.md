@@ -62,6 +62,8 @@ En GitHub, crear el environment `production` y cargar estos secretos allí:
 
 Hacer commit del workflow y de `docker-compose.prod.yml`, subirlos a `master` y revisar **GitHub → Actions → Deploy portfolio**. El job debe construir, transferir y activar la imagen. Después, comprobar `http://127.0.0.1:8090/` desde el VPS y el sitio público. Si Nginx ya apunta a ese puerto, no requiere cambios.
 
-También se puede iniciar manualmente desde **Actions → Deploy portfolio → Run workflow**. El workflow no borra imágenes antiguas; la limpieza específica del portfolio se añadirá después de verificar un despliegue completo.
+También se puede iniciar manualmente desde **Actions → Deploy portfolio → Run workflow**. Tras un despliegue saludable, el workflow conserva las tres imágenes `portfolio` con etiqueta SHA más recientes y cualquier imagen usada por un contenedor. Solo elimina etiquetas SHA antiguas de `portfolio`; no usa limpieza global de Docker ni toca las imágenes con etiquetas manuales como `local`.
 
-VzCall necesita su propio repositorio, ruta, Compose y puerto para configurar un flujo separado. Este repositorio solo contiene el enlace público a VzCall.
+Para revisar las candidatas sin borrar nada: `bash /home/alemus/portfolio-release/deploy/cleanup-images.sh portfolio 3 --dry-run`.
+
+VZcall se despliega desde el repositorio `adellemus/Beacon` con su propio workflow y puerto `8091`. Este repositorio solo contiene el enlace público a VZcall.
