@@ -1,11 +1,8 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import { PROJECTS } from '@/content/fijos/statics'
 import { ProjectCard } from '@/components/ui/proyectos/ProjectCard'
 
-export const metadata: Metadata = {
-  title: 'Proyectos',
-  description: 'Proyectos que he construido — desde aplicaciones web hasta herramientas internas.',
-}
+export const metadata = pageMetadata('Proyectos', 'Explora los proyectos de Adel Lemus: plataformas SaaS, aplicaciones web y herramientas de gestión desarrolladas con React, Next.js y NestJS.', '/proyectos/')
 
 export default function ProyectosPage() {
   return (

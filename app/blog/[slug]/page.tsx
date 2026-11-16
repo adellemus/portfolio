@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { pageMetadata, SITE_URL, serializeJsonLd } from '@/lib/seo'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllSlugs, getPostBySlug, formatDate } from '@/lib/posts'
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // ─── Generación estática ──────────────────────────────────────────────────────
@@ -22,22 +24,27 @@ export async function generateStaticParams() {
 // Esta función corre en build time para cada post y genera las etiquetas
 // SEO específicas de ese post (título, descripción, Open Graph).
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   try {
-    const post = getPostBySlug(params.slug)
+    const post = getPostBySlug(slug)
     return {
-      title: post.title,
-      description: post.excerpt,
+      ...pageMetadata(post.title, post.excerpt, `/blog/${encodeURIComponent(post.slug)}/`),
+      robots: post.published ? { index: true, follow: true } : { index: false, follow: false },
       openGraph: {
         title: post.title,
         description: post.excerpt,
         type: 'article',
+        url: `${SITE_URL}/blog/${encodeURIComponent(post.slug)}/`,
+        siteName: 'Adel Lemus — Dev',
+        locale: 'es_CL',
+        authors: ['Adel Lemus'],
         publishedTime: post.date,
         tags: post.tags,
       },
     }
   } catch {
     // Si el post no existe, devolvemos metadata genérica
-    return { title: 'Post no encontrado' }
+    return { title: 'Post no encontrado', robots: { index: false, follow: false } }
   }
 }
 
@@ -52,12 +59,21 @@ const mdxComponents = {
 }
 
 // ─── Página ───────────────────────────────────────────────────────────────────
-export default function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params
   // Si el slug no existe, getPostBySlug lanza un error y Next.js muestra 404
-  const post = getPostBySlug(params.slug)
+  if (!getAllSlugs().includes(slug)) notFound()
+  const post = getPostBySlug(slug)
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({
+        '@context': 'https://schema.org', '@type': 'BlogPosting',
+        headline: post.title, description: post.excerpt, datePublished: post.date,
+        mainEntityOfPage: `${SITE_URL}/blog/${encodeURIComponent(post.slug)}/`,
+        author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: 'Adel Lemus', url: `${SITE_URL}/` },
+        inLanguage: 'es-CL', keywords: post.tags.join(', '),
+      }) }} />
 
       {/* Breadcrumb de navegación */}
       <nav className="mb-10 flex items-center gap-2 font-mono text-xs text-text-dim">
@@ -65,7 +81,7 @@ export default function BlogPostPage({ params }: Props) {
         <span>/</span>
         <Link href="/blog" className="transition-colors hover:text-accent">blog</Link>
         <span>/</span>
-        <span className="text-text-muted">{params.slug}</span>
+        <span className="text-text-muted">{slug}</span>
       </nav>
 
       {/* Header del post */}

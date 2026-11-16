@@ -3,7 +3,6 @@
 // 'use client' porque manejamos estado del formulario (useState)
 // y el submit con fetch al API de Formspree.
 
-import type { Metadata } from 'next'
 import { useState } from 'react'
 import { CONTACT_LINKS, FORMSPREE_ENDPOINT, FormStatus } from '@/content/fijos/statics'
 
@@ -180,7 +179,7 @@ export default function ContactoPage() {
         {/* Columna derecha — links directos */}
         <div className="flex flex-col gap-6">
           <p className="font-mono text-xs uppercase tracking-widest text-text-dim">
-            // también encontrarme en
+           {' // también encuentrame en'}
           </p>
 
           <div className="flex flex-col gap-4">

@@ -1,13 +1,9 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { getAllPosts, formatDate } from '@/lib/posts'
 
 // Metadata específica del home — sobrescribe el template del layout
-export const metadata: Metadata = {
-  title: 'Adel Lemus — Desarrollador Full Stack',
-  description:
-    'Portafolio personal de Adel Lemus. Desarrollo web con React, Vite, PHP, Python, Spring Boot, MySQL y MongoDB.,. Disponible para proyectos freelance.',
-}
+export const metadata = pageMetadata('Adel Lemus — Desarrollador Full Stack', 'Portafolio de Adel Lemus. Más de 12 años creando aplicaciones web con React, Next.js, PHP, Python y bases de datos. Disponible para proyectos freelance.', '/')
 
 // Skills organizados por categoría para mostrar en el home.
 const SKILLS = [
@@ -57,7 +53,7 @@ export default async function HomePage() {
             </span>
           </div>
 
-          <h1 className="mb-5 text-6xl font-extrabold leading-tight tracking-tight text-white md:text-7xl">
+          <h1 className="mb-5 text-6xl font-bold leading-tight tracking-tight text-white md:text-7xl">
             Construyo cosas
             <br />
             para la{' '}
@@ -103,31 +99,31 @@ export default async function HomePage() {
             </div>
             <div className="mt-1 text-text-muted">{'{'}</div>
             <div className="pl-4 text-text-muted">
-              <span className="text-[#7eb8f7]">"nombre"</span>:{' '}
-              <span className="text-[#f7c07e]">"Adel Lemus"</span>,
+              <span className="text-[#7eb8f7]">{"nombre"}</span>:{' '}
+              <span className="text-[#f7c07e]">{"Adel Lemus"}</span>,
             </div>
             <div className="pl-4 text-text-muted">
-              <span className="text-[#7eb8f7]">"rol"</span>:{' '}
-              <span className="text-[#f7c07e]">"Full Stack Dev"</span>,
+              <span className="text-[#7eb8f7]">{"rol"}</span>:{' '}
+              <span className="text-[#f7c07e]">{"Full Stack Dev"}</span>,
             </div>
             <div className="pl-4 text-text-muted">
-              <span className="text-[#7eb8f7]">"experiencia"</span>:{' '}
-              <span className="text-[#f7c07e]">"12+ years"</span>,
+              <span className="text-[#7eb8f7]">{"experiencia"}</span>:{' '}
+              <span className="text-[#f7c07e]">{"12+ years"}</span>,
             </div>
             <div className="pl-4 text-text-muted">
-              <span className="text-[#7eb8f7]">"mainStack"</span>: [
-              <span className="text-[#f7c07e]">"React"</span>,{' '}
-              <span className="text-[#f7c07e]">"Vite"</span>,{' '}
-              <span className="text-[#f7c07e]">"Next.js"</span>,{' '}
-              <span className="text-[#f7c07e]">"PHP"</span>,{' '}
-              <span className="text-[#f7c07e]">"Python"</span>,{' '}
-              <span className="text-[#f7c07e]">"SQL"</span>,{' '}
-              <span className="text-[#f7c07e]">"MySQL"</span>,{' '}
-              <span className="text-[#f7c07e]">"MongoDB"</span>],
+              <span className="text-[#7eb8f7]">{"mainStack"}</span>: [
+              <span className="text-[#f7c07e]">{"React"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"Vite"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"Next.js"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"PHP"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"Python"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"SQL"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"MySQL"}</span>,{' '}
+              <span className="text-[#f7c07e]">{"MongoDB"}</span>],
             </div>
             <div className="pl-4 text-text-muted">
-              <span className="text-[#7eb8f7]">"disponible"</span>:{' '}
-              <span className="text-[#28c941]">true</span>
+              <span className="text-[#7eb8f7]">{"disponible"}</span>:{' '}
+              <span className="text-[#28c941]">{"true"}</span>
             </div>
             <div className="text-text-muted">{'}'}</div>
             <div className="mt-2 flex items-center gap-2">
@@ -142,7 +138,7 @@ export default async function HomePage() {
       {/* ── SKILLS ───────────────────────────────────────────────────── */}
       <section className="border-t border-border py-16">
         <p className="mb-8 font-mono text-sm uppercase tracking-widest text-text-dim">
-          // stack tecnológico
+          {'// stack tecnológico'}
         </p>
 
          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -174,7 +170,7 @@ export default async function HomePage() {
       <section className="border-t border-border py-16">
         <div className="mb-8 flex items-center justify-between">
           <p className="font-mono text-sm uppercase tracking-widest text-text-dim">
-            // últimas entradas del blog
+            {'// últimas entradas del blog'}
           </p>
           <Link
             href="/blog"
@@ -188,7 +184,7 @@ export default async function HomePage() {
           // Estado vacío — aparece hasta que tengás tu primer post
           <div className="rounded-lg border border-border bg-bg-secondary p-8 text-center">
             <p className="font-mono text-sm text-text-dim">
-              // próximamente —
+              {'// próximamente —'}
             </p>
           </div>
         ) : (

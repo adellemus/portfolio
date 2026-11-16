@@ -1,11 +1,8 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { getAllPosts, formatDate } from '@/lib/posts'
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Artículos sobre desarrollo web, React, Python, PHP y todo lo que aprendo en el camino.',
-}
+export const metadata = pageMetadata('Blog', 'Artículos de Adel Lemus sobre desarrollo web, arquitectura, React, Python y PHP: experiencias y decisiones técnicas en proyectos reales.', '/blog/')
 
 export default function BlogPage() {
   const posts = getAllPosts()
@@ -34,12 +31,12 @@ export default function BlogPage() {
       {posts.length === 0 ? (
         <div className="rounded-lg border border-border bg-bg-secondary p-12 text-center">
           <p className="font-mono text-sm text-text-dim">
-            // los posts aparecerán acá pronto
+            {'// los posts aparecerán acá pronto'}
           </p>
         </div>
       ) : (
         <div className="flex flex-col divide-y divide-border">
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}

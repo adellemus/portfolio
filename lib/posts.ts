@@ -105,12 +105,7 @@ export function getPostBySlug(slug: string): Post {
  * cada página de post en build time.
  */
 export function getAllSlugs(): string[] {
-  if (!fs.existsSync(POSTS_DIR)) return []
-
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((file) => file.endsWith('.mdx'))
-    .map((file) => file.replace(/\.mdx$/, ''))
+  return getAllPosts().map((post) => post.slug)
 }
 
 /**

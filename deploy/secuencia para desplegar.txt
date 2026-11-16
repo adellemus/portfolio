@@ -1,0 +1,5 @@
+python deploy/package-project.py . deploy/backups/portfolio-update.tar.gz
+
+scp -P 60000 deploy/backups/portfolio-update.tar.gz deploy-mobeela@192.141.169.14:/home/deploy-mobeela/portfolio-update.tar.gz
+
+ssh -p 60000 deploy-mobeela@192.141.169.14 "cd /home/deploy-mobeela/portfolio-release && tar -xzf /home/deploy-mobeela/portfolio-update.tar.gz && sh deploy/deploy.sh"
