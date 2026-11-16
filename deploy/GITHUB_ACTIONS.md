@@ -39,6 +39,14 @@ Dejar vacía la frase de contraseña de esta clave de automatización. La clave 
 
 Verificar la huella SSH del VPS por un canal de confianza y guardar su entrada completa para `[192.141.169.14]:60000` como `VPS_KNOWN_HOSTS`. No desactivar la verificación de la clave del servidor.
 
+Si Actions muestra `Host key verification failed`, revisar el secreto desde PowerShell:
+
+```powershell
+ssh-keygen -F "[192.141.169.14]:60000" -f "$HOME\.ssh\known_hosts"
+```
+
+Copiar en `VPS_KNOWN_HOSTS` solo la línea de clave resultante, sin líneas que comiencen con `#`. Debe corresponder exactamente al valor de `VPS_HOST` y `VPS_PORT`; para el puerto `60000`, una entrada sin corchetes o para el puerto `22` no sirve. Si no hay entrada, obtenerla con `ssh-keyscan -p 60000 -t ed25519 192.141.169.14` y comparar su huella con `ssh -p 60000 alemus@192.141.169.14 'ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub'` antes de guardarla. No pegar claves privadas en el chat ni en archivos del repositorio.
+
 En GitHub, crear el environment `production` y cargar estos secretos allí:
 
 | Secreto | Valor |
