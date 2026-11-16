@@ -1,10 +1,12 @@
 # Portfolio y Beacon: activación en el VPS
 
+> Para el despliegue automático actual del Portfolio con el usuario `alemus`, seguir [deploy/GITHUB_ACTIONS.md](deploy/GITHUB_ACTIONS.md). Las instrucciones de Beacon de este documento son históricas y deben verificarse en su propio repositorio antes de usarlas. VzCall no se despliega desde este repositorio.
+
 ## Direcciones preparadas
 
 | Proyecto | Carpeta del VPS | Acceso local | Dominio propuesto |
 |---|---|---|---|
-| Portfolio | `/home/deploy-mobeela/portfolio-release` | `127.0.0.1:8090` | `adelemus.com`, `www.adelemus.com` |
+| Portfolio | `/home/alemus/portfolio-release` (verificar en VPS) | `127.0.0.1:8090` | `adelemus.com`, `www.adelemus.com` |
 | Beacon | `/home/deploy-mobeela/beacon-release` | `127.0.0.1:8091` | `beacon.adelemus.com` |
 
 El dominio se tomó del código de Portfolio. Confirmar los nombres antes de activar DNS y editar `deploy/nginx.host.conf` si se usarán otros. Los servicios existentes de Mobeela y MCW conservan sus puertos y configuración.
@@ -14,7 +16,7 @@ El dominio se tomó del código de Portfolio. Confirmar los nombres antes de act
 Desde PowerShell:
 
 ```powershell
-ssh -p 60000 deploy-mobeela@192.141.169.14
+ssh -p 60000 alemus@192.141.169.14
 ```
 
 En el VPS, revisar antes de volver a construir:
@@ -31,7 +33,7 @@ Las compilaciones deben ser secuenciales. No usar limpieza global de Docker ni e
 Portfolio:
 
 ```bash
-cd /home/deploy-mobeela/portfolio-release
+cd /home/alemus/portfolio-release
 sh deploy/deploy.sh
 ```
 
@@ -57,7 +59,7 @@ El generador de secretos no sobrescribe archivos existentes. Si hay que cambiar 
 En otra ventana local:
 
 ```powershell
-ssh -N -p 60000 -L 8090:127.0.0.1:8090 -L 8091:127.0.0.1:8091 deploy-mobeela@192.141.169.14
+ssh -N -p 60000 -L 8090:127.0.0.1:8090 alemus@192.141.169.14
 ```
 
 Abrir `http://localhost:8090`, incluyendo `/blog/ejemplo/`, y `http://localhost:8091/login`. La salud de Beacon se consulta en `/api/health`. Crear la primera empresa y su administrador desde `/registro`; no hay credenciales demo preinstaladas. Verificar acceso a Dashboard y creación de un prospecto.
@@ -69,7 +71,7 @@ Este paso requiere una cuenta administradora con sudo. **`deploy-mobeela` no tie
 Desde una sesión administradora en el mismo VPS:
 
 ```bash
-sudo install -m 644 /home/deploy-mobeela/portfolio-release/deploy/nginx.host.conf /etc/nginx/sites-available/portfolio
+sudo install -m 644 /home/alemus/portfolio-release/deploy/nginx.host.conf /etc/nginx/sites-available/portfolio
 sudo install -m 644 /home/deploy-mobeela/beacon-release/deploy/nginx.host.conf /etc/nginx/sites-available/beacon
 sudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/portfolio
 sudo ln -s /etc/nginx/sites-available/beacon /etc/nginx/sites-enabled/beacon

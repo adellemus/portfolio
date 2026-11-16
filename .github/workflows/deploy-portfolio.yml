@@ -1,0 +1,54 @@
+name: Deploy portfolio
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build portfolio image
+        run: docker build -t "portfolio:${GITHUB_SHA}" .
+
+      - name: Configure SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          test -n "$VPS_SSH_KEY" && test -n "$VPS_KNOWN_HOSTS"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Transfer image and portfolio compose file
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR }}
+        run: |
+          test -n "$VPS_HOST" && test -n "$VPS_USER" && test -n "$VPS_PORT" && test -n "$VPS_DEPLOY_DIR"
+          docker save "portfolio:${GITHUB_SHA}" | gzip | ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" 'gzip -d | docker load'
+          scp -P "$VPS_PORT" docker-compose.prod.yml "$VPS_USER@$VPS_HOST:$VPS_DEPLOY_DIR/docker-compose.prod.yml"
+
+      - name: Activate portfolio only
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR }}
+        run: |
+          ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" "cd '$VPS_DEPLOY_DIR' && PORTFOLIO_IMAGE=portfolio:${GITHUB_SHA} docker compose -f docker-compose.prod.yml up -d --no-build --no-deps --wait --wait-timeout 90 web && curl --fail --silent --show-error http://127.0.0.1:8090/ >/dev/null"

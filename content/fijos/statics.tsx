@@ -5,7 +5,7 @@
 export const PROJECTS = [
   {
     title: 'Mobeela',
-    projectType: 'MVP SaaS',
+    projectType: 'SaaS',
     tagline: 'La gestión inmobiliaria, conectada.',
     description:
       'Plataforma SaaS que reúne propiedades, clientes y publicaciones en un solo lugar. Permite sincronizar avisos con portales inmobiliarios, gestionar oportunidades comerciales y utilizar inteligencia artificial para apoyar la creación de contenido y la relación entre clientes y propiedades. Participé en su desarrollo como parte del equipo, trabajando sobre una arquitectura multiempresa, permisos por rol e interfaces adaptables a cada corredora.',
@@ -17,16 +17,16 @@ export const PROJECTS = [
   },
 
   {
-    title: 'Plataforma de Gestión Comercial',
-    projectType: 'MVP SaaS',
+    title: 'VzCall',
+    projectType: 'SaaS',
     tagline: 'De un prospecto a una oportunidad, sin perder el seguimiento.',
     description:
       'Producto SaaS en desarrollo para equipos que gestionan prospectos, llamadas, seguimientos y citas. Busca concentrar en un solo flujo la información comercial y las próximas acciones de cada contacto, manteniendo trazabilidad sobre el trabajo realizado y reduciendo oportunidades perdidas por falta de seguimiento.',
     tags: ['SaaS', 'CRM', 'Workflows', 'RBAC'],
     href: null,
-    live: "beacon.adelemus.com",
-    status: 'Desarrollo',
-    statusType: 'desarrollo',
+    live: "vzcall.com",
+    status: 'Activo',
+    statusType: 'activo',
   },
 
   {
